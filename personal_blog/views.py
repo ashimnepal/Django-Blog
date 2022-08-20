@@ -9,7 +9,8 @@ from django.shortcuts import get_object_or_404
 # Create your views here.
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
+    #posts = Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
+    posts = Post.objects.all()
     return render (
         request,
         "post_list.html",
@@ -23,29 +24,45 @@ def post_detail(request, pk):
         "post_detail.html",
         {"post":post},
     )
-def post_add(request):    
-    if request.method == "GET":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-        return render(request, "post_add.html", {"form": form},)
-    else:
-        post = Post(title=request.POST['title'], text=request.POST['text'])
-        post.save()
-        return HttpResponseRedirect("/")
-
-# def post_add(request):
-#     if request.method == "POST":
-#         print(request.post)
-#         post = post.object.create(
-#             title = request.POST["titles"]
-#             text = request.POST["contents"]
-#         )
-#         return HttpResponseRedirect("/")
+# def post_add(request):    
+#     if request.method == "GET":
+#         form = PostForm(request.POST)
+#         if form.is_valid():
+#             post = form.save(commit=False)
+#             post.author = request.user
+#             post.save()
+#         return render(request, "post_add.html", {"form": form},)
 #     else:
-#         return render (request, "post_add.html")
+#         post = Post(title=request.POST['title'], text=request.POST['text'])
+#         post.save()
+#         return HttpResponseRedirect("/")
+
+# Sir ko code thorai milayera
+# def post_add(request):
+#         form = PostForm()
+#         if request.method == "POST":
+#             post = Post.objects.create(
+#                 title = request.POST["title"],
+#                 text = request.POST["text"],
+#                 author = request.user
+#         )
+#             return HttpResponseRedirect("/")
+#         else:
+#             return render (request, "post_add.html", {"form": form})
+
+# Ishan's Code
+def post_add(request):
+    form = PostForm()
+    if request.method == "POST":
+        post = Post.objects.create(
+            title = request.POST.get('title'),
+            text = request.POST.get('text'),
+            author = request.user
+        )
+        return HttpResponseRedirect("/")
+    else:
+        return render (request, "post_add.html", {"form": form})
+
 
 def post_draft_list(request):
     drafts = Post.objects.filter(published_date__isnull= True).order_by('created_date')
