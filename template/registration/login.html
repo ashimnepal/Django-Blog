@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if form.errors %}
+<p style="color: red; font-size: 20px;">Your username and password doesn't match</p>
+{% endif %}
+<form action="" method="post">
+    {% csrf_token%}
+    
+</form>
+
+{% endblock %}

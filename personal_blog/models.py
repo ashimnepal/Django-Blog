@@ -9,8 +9,8 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank = True, null = True)
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
-    class Meta:
-        ordering = ['-published_date'] 
+    # class Meta:
+    #     ordering = ['-published_date'] 
 
     def __str__(self):
         return self.title

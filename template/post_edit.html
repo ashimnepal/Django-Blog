@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container" style="margin-top: 20px;">
-<form action="/post-add/" method="post" class="post-form">
+<form action="/post-edit/{{post.pk}}/" method="post" class="post-form">
     {% csrf_token %}
     {{ form.as_p }}
     <!-- <div class="mb-3">
@@ -14,7 +14,7 @@
         <textarea class="form-control" name="contents" id="exampleFormControlTextarea1" rows="3" placeholder="Enter the Content."></textarea>
       </div> -->
 
-      <button type="submit" class="btn btn-primary mb-3">Add Post</button>
+      <button type="submit" class="btn btn-primary mb-3">Edit Post</button>
       
 </form>
 </div>

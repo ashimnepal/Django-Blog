@@ -4,9 +4,9 @@
 
 {% for draft in drafts %} 
 <div class="post">
- <p class="date">{{draft.created_date}}</p>  
-<h1><a href="/draft-detail/{{draft.pk}}">{{draft.title}}</a></h1>
-  <p>{{draft.created_date}}</p>
+ <p class="date">Created: {{draft.created_date}}</p>  
+<h1><a href="/post-detail/{{draft.pk}}">{{draft.title}}</a></h1>
+  <!-- <p>{{draft.created_date}}</p> -->
   <p>{{draft.text | truncatechars:150 }}</p>
 </div>
 

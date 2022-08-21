@@ -26,19 +26,20 @@
                   </span>
                 </a>
             </p>
-
-            <a href="/post-add/" class="top-menu">
-            <span class="material-icons md-48">
-              add
-              </span>
-            </a>
-            <a href="/draft-list/" class="top-menu">
+            <a href="{% url 'draft-list' %}" class="top-menu">
               <span class="material-icons md-48">
                 library_add
                 </span>
               </a>
+
+            <a href="{% url 'post-add' %}" class="top-menu">
+            <span class="material-icons md-48">
+              add
+              </span>
+            </a>
+            
               {% else %}
-              <a href="" class="top-menu">
+              <a href="{% url 'login' %}" class="top-menu">
                 <span class="material-icons md-48">
                   lock
                   </span>
