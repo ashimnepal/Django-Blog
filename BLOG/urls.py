@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("personal_blog.urls")),
     path("/accounts/login/", LoginView.as_view(), name="login"),
-    path("/accounts/login/", LogoutView.as_view(), name="logout"),
+    path("/accounts/logout/", LogoutView.as_view(), name="logout"),
 ]
